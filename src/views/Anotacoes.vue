@@ -4,20 +4,25 @@
       <h2>Anotação</h2>
       <div class="form-group">
         <label for="assunto">Assunto</label>
-        <input type="text" id="assunto"
-            class="form-control" required autofocus
-            v-model="assunto">
+        <input
+          type="text"
+          id="assunto"
+          class="form-control"
+          required
+          autofocus
+          v-model="assunto"
+        />
       </div>
       <div class="form-group">
         <label for="texto">Texto</label>
-        <textarea id="texto"
-            class="form-control" required
-            v-model="texto">
+        <textarea id="texto" class="form-control" required v-model="texto">
         </textarea>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">
+        Salvar
+      </button>
     </form>
-    <br>
+    <br />
     <table class="table table-striped">
       <thead>
         <tr>
@@ -42,8 +47,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapState } from 'vuex'
+import axios from 'axios';
+import { mapState } from 'vuex';
 
 export default {
   name: 'anotacoes',
@@ -51,42 +56,40 @@ export default {
     return {
       assunto: '',
       texto: '',
-      anotacoes: []
-    }
+      anotacoes: [],
+    };
   },
   computed: {
-    ...mapState([
-      'usuario'
-    ])
+    ...mapState(['usuario']),
   },
   methods: {
     cadastrar() {
-      axios.post('anotacao/save',
-          {
-            assunto: this.assunto,
-            texto: this.texto,
-            usuario: this.usuario
-          })
-        .then(res => {
+      axios
+        .post('anotacao/save', {
+          assunto: this.assunto,
+          texto: this.texto,
+          usuario: this.usuario,
+        })
+        .then((res) => {
           console.log(res);
           this.assunto = '';
           this.texto = '';
           this.atualizar();
         })
-        .catch(error => console.log(error))
+        .catch((error) => console.log(error));
     },
-    atualizar () {
-      axios.get('/anotacao/getAll', 
-          { headers: { Accept: 'application/json' } })
-        .then(res => {
-          console.log(res)
-          this.anotacoes = res.data
+    atualizar() {
+      axios
+        .get('/anotacao/getAll', { headers: { Accept: 'application/json' } })
+        .then((res) => {
+          console.log(res);
+          this.anotacoes = res.data;
         })
-        .catch(error => console.log(error))
-    }
+        .catch((error) => console.log(error));
+    },
   },
-  created () {
-    this.atualizar()
-  }
-}
+  created() {
+    this.atualizar();
+  },
+};
 </script>

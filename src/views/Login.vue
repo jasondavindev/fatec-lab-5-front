@@ -42,12 +42,12 @@ export default {
     ...mapMutations(['setUser', 'setToken']),
     async login() {
       try {
-        const res = await signIn({
+        const { data } = await signIn({
           username: this.username,
           password: this.password,
         });
-        this.setUser(res.data);
-        this.setToken(res.data.token);
+        this.setUser(data);
+        this.setToken(data.token);
         this.$router.push('/');
       } catch (error) {
         console.error(error);

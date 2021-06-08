@@ -1,3 +1,4 @@
 import axios from './axios';
 
-export const getUser = async (id) => axios.get(`/v1/users/${id}`);
+export const signIn = async ({ username, password }) =>
+  axios.post('/v1/users/sign-in', { username, password });

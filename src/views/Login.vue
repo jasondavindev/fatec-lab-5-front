@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { getUser } from '../services/api';
+import { signIn } from '../services/api';
 import { mapMutations } from 'vuex';
 
 export default {
@@ -41,11 +41,7 @@ export default {
   methods: {
     ...mapMutations(['setUsuario', 'setToken']),
     async login() {
-      axios
-        .post('login', {
-          username: this.nome,
-          password: this.senha,
-        })
+      signIn({ username: this.nome, password: this.senha })
         .then((res) => {
           console.log(res);
           this.setUsuario(res.data);

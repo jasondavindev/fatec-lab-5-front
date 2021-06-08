@@ -3,8 +3,8 @@
     <div id="nav" class="row text-center">
       <router-link to="/">Home</router-link> |
       <router-link to="/anotacoes">Anotações</router-link> |
-      <a v-if="usuario" @click="logout">Logout</a>
-      <router-link v-if="!usuario" to="/login">Login</router-link>
+      <a v-if="user" @click="logout">Logout</a>
+      <router-link v-if="!user" to="/login">Login</router-link>
     </div>
     <router-view />
   </div>
@@ -17,7 +17,7 @@ import { mapMutations } from 'vuex';
 export default {
   name: 'app',
   computed: {
-    ...mapState(['usuario']),
+    ...mapState(['user']),
   },
   methods: {
     ...mapMutations(['logout']),

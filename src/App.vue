@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link v-if="user" to="/polls">Enquetes</router-link> |
       <a v-if="user" @click="logoutUser">Logout</a>
-      <router-link v-if="!user" to="/login">Login</router-link>
+      <router-link v-else to="/login">Login</router-link>
     </div>
     <router-view />
   </div>

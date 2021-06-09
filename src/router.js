@@ -14,14 +14,14 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/anotacoes',
-      name: 'anotacoes',
-      component: () => import('./views/Anotacoes.vue'),
-    },
-    {
       path: '/Login',
       name: 'login',
       component: () => import('./views/Login.vue'),
+    },
+    {
+      path: '/polls',
+      name: 'polls',
+      component: () => import('./views/Polls.vue'),
     },
   ],
 });

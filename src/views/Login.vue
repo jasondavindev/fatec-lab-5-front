@@ -27,8 +27,9 @@
 </template>
 
 <script>
-import { signIn } from '../services/api';
 import { mapMutations } from 'vuex';
+import { signIn } from '../services/api';
+import { verifyToken } from '../services/jwt';
 
 export default {
   name: 'login',
@@ -46,7 +47,9 @@ export default {
           username: this.username,
           password: this.password,
         });
-        this.setUser(data);
+
+        const { user } = verifyToken(data.token);
+        this.setUser(JSON.parse(user));
         this.setToken(data.token);
         this.$router.push('/');
       } catch (error) {

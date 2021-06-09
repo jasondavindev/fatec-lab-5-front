@@ -2,8 +2,8 @@
   <div id="app" class="container">
     <div id="nav" class="row text-center">
       <router-link to="/">Home</router-link> |
-      <router-link to="/anotacoes">Anotações</router-link> |
-      <a v-if="user" @click="logout">Logout</a>
+      <router-link v-if="user" to="/polls">Enquetes</router-link> |
+      <a v-if="user" @click="logoutUser">Logout</a>
       <router-link v-if="!user" to="/login">Login</router-link>
     </div>
     <router-view />
@@ -21,6 +21,10 @@ export default {
   },
   methods: {
     ...mapMutations(['logout']),
+    logoutUser() {
+      this.logout();
+      this.$router.push('/');
+    },
   },
 };
 </script>

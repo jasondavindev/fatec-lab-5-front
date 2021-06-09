@@ -2,24 +2,24 @@
   <form @submit.prevent="login">
     <h2>Login</h2>
     <div class="form-group">
-      <label for="username">Usuário</label>
+      <label for="username">Username</label>
       <input
         type="text"
         id="username"
         class="form-control"
         required
         autofocus
-        v-model="nome"
+        v-model="username"
       />
     </div>
     <div class="form-group">
-      <label for="inputPassword">Senha</label>
+      <label for="inputPassword">password</label>
       <input
         type="password"
         id="inputPassword"
         class="form-control"
         required
-        v-model="senha"
+        v-model="password"
       />
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Ok</button>
@@ -34,21 +34,24 @@ export default {
   name: 'login',
   data() {
     return {
-      nome: '',
-      senha: '',
+      username: '',
+      password: '',
     };
   },
   methods: {
-    ...mapMutations(['setUsuario', 'setToken']),
+    ...mapMutations(['setUser', 'setToken']),
     async login() {
-      signIn({ username: this.nome, password: this.senha })
-        .then((res) => {
-          console.log(res);
-          this.setUsuario(res.data);
-          this.setToken(res.headers.token);
-          this.$router.push('/');
-        })
-        .catch((error) => console.log(error));
+      try {
+        const { data } = await signIn({
+          username: this.username,
+          password: this.password,
+        });
+        this.setUser(data);
+        this.setToken(data.token);
+        this.$router.push('/');
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };

@@ -12,19 +12,19 @@ const vuexPersist = new VuexPersist({
 export default new Vuex.Store({
   plugins: [vuexPersist.plugin],
   state: {
-    usuario: null,
+    user: null,
     token: null,
   },
   mutations: {
-    setUsuario(state, usuario) {
-      state.usuario = usuario;
+    setUser(state, user) {
+      state.user = user;
     },
     setToken(state, token) {
       state.token = token;
     },
     logout(state) {
       state.token = null;
-      state.usuario = null;
+      state.user = null;
     },
   },
   actions: {},

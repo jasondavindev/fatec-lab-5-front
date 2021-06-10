@@ -48,13 +48,19 @@ export default {
           password: this.password,
         });
 
-        const { user } = verifyToken(data.token);
-        this.setUser(JSON.parse(user));
+        this.setUserStore(data.token, data.id);
         this.setToken(data.token);
         this.$router.push('/');
       } catch (error) {
         console.error(error);
       }
+    },
+
+    setUserStore(token, userId) {
+      const { user } = verifyToken(token);
+      const userJSON = JSON.parse(user);
+      userJSON.id = userId;
+      this.setUser(userJSON);
     },
   },
 };

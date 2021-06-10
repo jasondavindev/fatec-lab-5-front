@@ -26,7 +26,7 @@ export default new Router({
     {
       path: '/create-polls',
       name: 'create-polls',
-      component: () => import('./views/CreatePolls.vue')
+      component: () => import('./views/CreatePolls.vue'),
     },
   ],
 });

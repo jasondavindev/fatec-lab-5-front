@@ -27,6 +27,9 @@
     <div v-else class="alert alert-info text-center">
       Não há enquetes cadastradas
     </div>
+    <router-link v-if="user" to="/create-polls">
+      <button class="btn btn-lg btn-primary">Criar Nova Enquete</button>
+    </router-link>
   </div>
 </template>
 
@@ -55,7 +58,7 @@ export default {
     },
 
     isAdmin() {
-      return this.user.role === 'ROLE_ADMIN';
+      return (this.user || {}).role === 'ROLE_ADMIN';
     },
 
     async deletePoll(id) {

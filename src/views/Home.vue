@@ -17,6 +17,6 @@ export default {
   name: 'home',
   computed: {
     ...mapState(['user']),
-  }
+  },
 };
 </script>

@@ -2,7 +2,7 @@
   <div id="app" class="container">
     <div id="nav" class="row text-center">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="user" to="/polls">Enquetes</router-link> |
+      <router-link to="/polls">Enquetes</router-link> |
       <a v-if="user" @click="logoutUser">Logout</a>
       <router-link v-else to="/login">Login</router-link>
     </div>
